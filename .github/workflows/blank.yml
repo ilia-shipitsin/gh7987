@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - macos-13
+        - macos-latest
+        - macos-11
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: |
+          sudo cat /etc/sudoers
+          sudo sysadminctl -addUser myuser -admin
+          sudo -u myuser -H bash -e -c "id" 
