@@ -16,5 +16,6 @@ jobs:
       - run: |
           sudo cat /etc/sudoers
           sudo sysadminctl -addUser myuser -admin
-          id myuser
+          sudo echo >> /etc/sudoers
+          sudo echo "runner ALL=(ALL) NOPASSWD: ALL"  >> /etc/sudoers
           sudo -u myuser -H bash -e -c "id" 
